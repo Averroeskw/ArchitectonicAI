@@ -1,0 +1,62 @@
+{
+  "name": "archie-flow-sdk",
+  "version": "2.0.0",
+  "type": "module",
+  "description": "Modern JavaScript SDK for executing Archie AI agent workflows with zero configuration",
+  "main": "dist/index.cjs",
+  "module": "dist/index.js",
+  "browser": "dist/archie-flow-sdk.umd.js",
+  "types": "dist/index.d.ts",
+  "exports": {
+    ".": {
+      "import": "./dist/index.js",
+      "require": "./dist/index.cjs",
+      "browser": "./dist/archie-flow-sdk.umd.js",
+      "types": "./dist/index.d.ts"
+    }
+  },
+  "scripts": {
+    "build": "npm run build:node && npm run build:browser",
+    "build:node": "esbuild src/index.js --bundle --platform=node --format=esm --outfile=dist/index.js && esbuild src/index.js --bundle --platform=node --format=cjs --outfile=dist/index.cjs",
+    "build:browser": "esbuild src/index.js --bundle --platform=browser --format=iife --global-name=ArchieFlowSDK --outfile=dist/archie-flow-sdk.umd.js && esbuild src/index.js --bundle --platform=browser --format=iife --global-name=ArchieFlowSDK --minify --outfile=dist/archie-flow-sdk.umd.min.js",
+    "test": "node test/basic.test.js",
+    "test:all": "node test/basic.test.js && node test/nodes.test.js && node test/export.test.js",
+    "dev": "npm run build && npm run test"
+  },
+  "files": [
+    "dist",
+    "src",
+    "test",
+    "README.md",
+    "CHANGELOG.md"
+  ],
+  "keywords": [
+    "archie",
+    "ai",
+    "workflow",
+    "automation",
+    "sdk",
+    "llm",
+    "agent",
+    "no-code",
+    "api",
+    "javascript",
+    "typescript"
+  ],
+  "author": "Archie Team",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/archie-ai/archie-flow-sdk"
+  },
+  "bugs": {
+    "url": "https://github.com/archie-ai/archie-flow-sdk/issues"
+  },
+  "homepage": "https://github.com/archie-ai/archie-flow-sdk#readme",
+  "devDependencies": {
+    "esbuild": "^0.19.0"
+  },
+  "engines": {
+    "node": ">=16.0.0"
+  }
+}
